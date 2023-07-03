@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package licenta.drona.products;
+
+message Product {
+    string id = 1;
+    string name = 2;
+    string price = 3;
+}
+
+message CreateProductRequest {
+    string name = 1;
+    string price = 2;
+}
+
+message CreateProductResponse {
+    Product product = 1;
+}
+
+message GetProductsRequest {
+    Product filter_product = 1;
+}
+
+message GetProductsResponse {
+    repeated Product products = 1;
+}
+
+message UpdateProductRequest {
+    Product new_product = 1;
+    string old_product_id = 2;
+}
+
+message UpdateProductResponse {
+    Product product = 1;
+}
+
+message DeleteProductRequest {
+    string id = 1;
+}
+
+message DeleteProductResponse {
+    string id = 1;
+}
+
+service ProductsService {
+    rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse);
+    rpc GetProducts(GetProductsRequest) returns (GetProductsResponse);
+    rpc UpdateProduct(UpdateProductRequest) returns (UpdateProductResponse);
+    rpc DeleteProduct(DeleteProductRequest) returns (DeleteProductResponse);
+}
